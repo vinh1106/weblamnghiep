@@ -1,0 +1,147 @@
+﻿@using Newtonsoft.Json
+@model WebApplication4.Models.Total
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    
+
+    <script>
+        function myFunction(txt,id) {
+            var content = document.getElementById('content');
+            var text = ""
+            // List < DieuKhoan > models = JsonConvert.DeserializeObject < List < DieuKhoan >> (txt);
+           console.log('id ', id);
+
+           console.log('txt ', txt);
+
+            const myObj = JSON.parse(txt);
+            console.log('myObj ', myObj);
+            console.log(myObj.length)
+            console.log(myObj[0])
+            let te="";
+            for (let i = 0; i < myObj.length; i++) {
+                //console.log(myObj[i].content)
+                if (myObj[i].id_chuong == id) {
+                    console.log(myObj[i].content);
+                    te += myObj[i].content;
+                    document.writeln("");
+                }
+            }
+
+
+            //  dynamic myObject = JValue.Parse(txt);c
+            content.innerHTML = te;
+
+          //  alert()
+        }
+    </script>
+    <title>Trang</title>
+
+
+    <style>
+        body {
+            margin: 0 auto; /* canh bố cục đều 2 bên */
+            padding: 0;
+            width: 982px;
+        }
+
+        .wrap {
+            width: 982px; /* kích thước chiều rộng trang web */
+            float: left; /* canh div từ trái sang */
+            border: 1px solid #AAA;
+        }
+
+        /* id="header" thì phải định nghĩa bằng dấu # và tên id (header) */
+        #header {
+            width: 980px; /* kích thước chiều rộng trang web */
+            float: left; /* canh div từ trái sang */
+            border-bottom: 1px dashed #AAA;
+        }
+
+        .main {
+            width: 980px; /* kích thước chiều rộng trang web */
+            float: left; /* canh div từ trái sang */
+        }
+
+        /* chiều rộng của 2 vùng div "nav" và "content" phải bằng tổng độ rộng của trang */
+        /* chú ý padding, border, margin có thể ảnh hưởng đến độ rộng của trang web */
+        .nav {
+            width: 279px; /* kích thước chiều rộng của vùng thanh bên */
+            float: left; /* canh div từ trái sang */
+            border-right: 1px solid #999; /* tạo viền bên phải */
+        }
+
+        .content {
+            width: 700px; /* kích thước chiều rộng của vùng nội dung */
+            float: left; /* canh div từ trái sang */
+        }
+
+        #footer {
+            width: 980px; /* kích thước chiều rộng của vùng nội dung */
+            float: left; /* canh div từ trái sang */
+            border-top: 1px dashed #AAA;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <div class="wrap">
+        <!-- sử dụng 1 div bao hết nội dung web lại -->
+
+        <div id="header">
+            <!-- phần header -->
+            <div>
+                <a href="" style="text-decoration: none;font-size:30px;color:red;text-align:center">Hỗ trợ quá trình xử phạt vi phạm hành chính lĩnh vực lâm nghiệp</a> <br /></br></br> <!-- dùng thẻ br để xuống dòng làm vùng to ra dễ nhìn -->
+            </div>
+            <div>
+                <img src="~/Image/OIP.jpg" style="width:982px;height:300px" />
+            </div>
+
+        </div>
+
+        <div class="main">
+            <!-- bao phần nội dung chính -->
+            <div class="nav">
+
+                <div>
+
+
+                    @foreach(var chuong in Model.ChuongMuc1)
+                    {
+                        <div style="height:auto;background-color:greenyellow;margin:5px;text-align:center">
+                            @*<a style="text-decoration: none" onclick="myFunction('@(Model.ChuongMuc1[i].content)')">@i</a>*@
+                            <a style="text-decoration: none" onclick="myFunction('@(JsonConvert.SerializeObject(Model.DieuKhoan1))','@chuong.id')">@chuong.content</a>
+                        </div>
+        
+                        }
+                </div>
+                <!--  Nội dung menu <br /></br></br><br /></br></br><br /></br></br><br /></br></br> Phần thanh bên trái class="nav" -->
+            </div>
+
+            <div class="content" id="content">
+                aaaaa
+            </div>
+        </div> <!-- kết thúc nội dung chính -->
+
+        <div id="footer">
+            <!-- phần header -->
+            Bản quyền thuộc về <a href="https://www.dammio.com">DAMMIO.COM</a> nhé các bạn! <br /></br></br>
+            Phần chân trang id="footer"
+        </div>
+
+    </div> <!-- sử dụng 1 div bao hết nội dung web lại -->
+
+
+
+</body>
+</html>
