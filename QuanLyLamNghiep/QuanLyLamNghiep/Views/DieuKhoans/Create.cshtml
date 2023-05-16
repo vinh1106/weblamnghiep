@@ -1,0 +1,48 @@
+﻿@model QuanLyLamNghiep.Models.DieuKhoanDto
+
+@{
+    ViewData["Title"] = "Tạo điều khoagnr mới";
+}
+
+<h1>Create</h1>
+
+<h4>DieuKhoan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <input asp-for="Content" class="form-control" />
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Khungphat" class="control-label"></label>
+                <input asp-for="Khungphat" class="form-control" />
+                <span asp-validation-for="Khungphat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mucphat" class="control-label"></label>
+                <input asp-for="Mucphat" class="form-control" />
+                <span asp-validation-for="Mucphat" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChuongMucId" class="control-label"></label>
+                <input asp-for="ChuongMucId" class="form-control" />
+                <span asp-validation-for="ChuongMucId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
